@@ -1,10 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <color name="purple_200">#FFBB86FC</color>
-  <color name="purple_500">#FF6200EE</color>
-  <color name="purple_700">#FF3700B3</color>
-  <color name="teal_200">#FF03DAC5</color>
-  <color name="teal_700">#FF018786</color>
-  <color name="black">#FF000000</color>
-  <color name="white">#FFFFFFFF</color>
+  <color name="blue_10">#ff001b33</color>
+  <color name="blue_20">#ff003a6c</color>
+  <color name="blue_30">#ff005299</color>
+  <color name="blue_40">#ff006dcc</color>
+  <color name="blue_50">#ff0088ff</color>
+  <color name="blue_60">#ff33a0ff</color>
+  <color name="blue_70">#ff66b8ff</color>
+  <color name="blue_80">#ff99cfff</color>
+  <color name="blue_90">#ffcce7ff</color>
+  <color name="blue_95">#ffe5f5ff</color>
+  <color name="blue_99">#fffafdff</color>
+
+  <color name="gold_10">#ff1f1f14</color>
+  <color name="gold_20">#ff3d3d29</color>
+  <color name="gold_30">#ff5c5c3d</color>
+  <color name="gold_40">#ff937947</color>
+  <color name="gold_50">#ffac8d53</color>
+  <color name="gold_60">#ffbda475</color>
+  <color name="gold_70">#ffcdbb98</color>
+  <color name="gold_80">#ffded2ba</color>
+  <color name="gold_90">#ffeee8dd</color>
+  <color name="gold_95">#fff6f4ee</color>
+  <color name="gold_99">#fffdfdfc</color>
 </resources>
