@@ -15,6 +15,7 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.ViewCompat
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 private val DarkColorScheme = darkColorScheme(
   primary = Blue80,
@@ -60,6 +61,14 @@ fun AppTheme(
       (view.context as Activity).window.statusBarColor = colorScheme.primary.toArgb()
       ViewCompat.getWindowInsetsController(view)?.isAppearanceLightStatusBars = darkTheme
     }
+  }
+
+  val systemUiController = rememberSystemUiController()
+
+  SideEffect {
+    systemUiController.setSystemBarsColor(
+      color = colorScheme.background
+    )
   }
 
   MaterialTheme(

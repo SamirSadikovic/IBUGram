@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "866108403683",
+    "project_id": "ibugram-e95bc",
+    "storage_bucket": "ibugram-e95bc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:866108403683:android:e7491313b10b001d773ad6",
+        "android_client_info": {
+          "package_name": "ba.ibu.gram"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "866108403683-vd8uqa8sondbqa40v5tcj87qa0lru8vn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ba.ibu.gram",
+            "certificate_hash": "15ff521f14ca9c28c36eefa5dca0adaa216b0b9e"
+          }
+        },
+        {
+          "client_id": "866108403683-cl0945adolv0ccmfinm6ki3d8m1ura4a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANSBXbvfYGzZRcdr5ML6tVoHMWebchkf0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "866108403683-cl0945adolv0ccmfinm6ki3d8m1ura4a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

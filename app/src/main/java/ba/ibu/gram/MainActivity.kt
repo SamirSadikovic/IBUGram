@@ -1,60 +1,41 @@
 package ba.ibu.gram
 
-import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.navigation.compose.rememberNavController
+import ba.ibu.gram.navigation.RootNavigation
 import ba.ibu.gram.ui.theme.AppTheme
+import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+  @Inject lateinit var auth: FirebaseAuth
+
   override fun onCreate(savedInstanceState: Bundle?) {
     installSplashScreen()
     super.onCreate(savedInstanceState)
 
-    setContent {
-      AppTheme {
-        Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-          Burch()
-        }
-      }
+    setContent { App(auth.currentUser != null) }
+  }
+}
+
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun App(loggedIn: Boolean) {
+  AppTheme {
+    val navController = rememberNavController()
+
+    Scaffold { _ ->
+      RootNavigation(navController, loggedIn)
     }
   }
 }
 
-@Composable
-fun Burch() {
-  Image(painter = painterResource(R.drawable.ic_burch), contentDescription = null)
-}
-
-@Preview(
-  name = "Burch",
-  showBackground = true
-)
-@Composable
-fun DefaultPreview() {
-  AppTheme {
-    Burch()
-  }
-}
-
-@Preview(
-  name = "Burch Night",
-  showBackground = true, uiMode = UI_MODE_NIGHT_YES
-)
-@Composable
-fun DarkDefaultPreview() {
-  AppTheme {
-    Burch()
-  }
-}
