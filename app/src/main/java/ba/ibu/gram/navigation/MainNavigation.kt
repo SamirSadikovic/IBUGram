@@ -21,6 +21,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -43,24 +45,47 @@ enum class BottomScreen(
   val icon: ImageVector,
   val iconSelected: ImageVector,
   @StringRes val label: Int,
-  val view: @Composable () -> Unit
+  val content: @Composable (navController: NavController) -> Unit
 ) {
-  Feed("feed", Icons.Outlined.Feed, Icons.Filled.Feed, R.string.feed, { FeedScreen() }),
-  Search("search", Icons.Outlined.Search, Icons.Filled.Search, R.string.search, { SearchScreen() }),
-  Chat("chat", Icons.Outlined.Chat, Icons.Filled.Chat, R.string.chat, { ChatScreen() }),
-  Profile("profile", Icons.Outlined.AccountCircle, Icons.Filled.AccountCircle, R.string.profile, { ProfileScreen() })
+  Feed(
+    "feed",
+    Icons.Outlined.Feed,
+    Icons.Filled.Feed,
+    R.string.feed,
+    { navController -> FeedScreen(hiltViewModel(), navController) }),
+
+  Search(
+    "search",
+    Icons.Outlined.Search,
+    Icons.Filled.Search,
+    R.string.search,
+    { navController -> SearchScreen(hiltViewModel(), navController) }),
+
+  Chat(
+    "chat",
+    Icons.Outlined.Chat,
+    Icons.Filled.Chat,
+    R.string.chat,
+    { navController -> ChatScreen(hiltViewModel(), navController) }),
+
+  Profile(
+    "profile",
+    Icons.Outlined.AccountCircle,
+    Icons.Filled.AccountCircle,
+    R.string.profile,
+    { navController -> ProfileScreen(hiltViewModel(), navController) })
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainNavigation() {
+fun MainNavigation(navController: NavController) {
   val bottomNavController = rememberNavController()
   val items = listOf(Feed, Search, Chat, Profile)
 
 
   Scaffold(bottomBar = { BottomBar(bottomNavController, items) }) { _ ->
     NavHost(navController = bottomNavController, startDestination = "feed") {
-      items.forEach { screen -> composable(route = screen.route) { screen.view() } }
+      items.forEach { screen -> composable(route = screen.route) { screen.content(navController) } }
     }
   }
 }
