@@ -13,6 +13,7 @@ import ba.ibu.gram.model.Post
 import ba.ibu.gram.model.User
 import ba.ibu.gram.ui.screens.LoginScreen
 import ba.ibu.gram.ui.screens.PostScreen
+import ba.ibu.gram.ui.screens.SettingsScreen
 
 @Composable
 fun RootNavigation(navController: NavHostController, loggedIn: Boolean) {
@@ -22,6 +23,8 @@ fun RootNavigation(navController: NavHostController, loggedIn: Boolean) {
 
     navigation(route = "main", startDestination = "bottom") {
       composable("bottom") { MainNavigation(navController) }
+
+      composable("settings") { SettingsScreen() }
 
       composable(
         "post/{post}",

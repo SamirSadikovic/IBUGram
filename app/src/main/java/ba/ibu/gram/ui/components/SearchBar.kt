@@ -22,7 +22,7 @@ import ba.ibu.gram.ui.theme.AppTheme
 
 @Composable
 fun SearchBar() {
-  val text by remember { mutableStateOf("") }
+  var text by remember { mutableStateOf("") }
 
   TextField(
     modifier = Modifier.fillMaxWidth(),
