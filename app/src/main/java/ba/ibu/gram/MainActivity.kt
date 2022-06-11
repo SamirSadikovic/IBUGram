@@ -11,12 +11,14 @@ import androidx.navigation.compose.rememberNavController
 import ba.ibu.gram.navigation.RootNavigation
 import ba.ibu.gram.ui.theme.AppTheme
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.functions.FirebaseFunctions
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
   @Inject lateinit var auth: FirebaseAuth
+  @Inject lateinit var functions: FirebaseFunctions
 
   override fun onCreate(savedInstanceState: Bundle?) {
     installSplashScreen()

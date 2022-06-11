@@ -21,14 +21,14 @@ fun RootNavigation(navController: NavHostController, loggedIn: Boolean) {
     composable("auth") { LoginScreen(hiltViewModel(), navController) }
 
     navigation(route = "main", startDestination = "bottom") {
-      composable("bottom") { MainNavigation() }
-      
+      composable("bottom") { MainNavigation(navController) }
+
       composable(
         "post/{post}",
         arguments = listOf(navArgument("post") {
           type = Post.navType()
         })) { PostScreen(it.arguments?.getParcelable("post"), navController) }
-      
+
       composable(
         "user/{user}",
         arguments = listOf(navArgument("user") {
