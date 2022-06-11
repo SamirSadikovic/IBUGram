@@ -7,9 +7,20 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material3.Button
+import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilledIconButton
+import androidx.compose.material3.FilledTonalIconButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -27,21 +38,133 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import ba.ibu.gram.R
+import ba.ibu.gram.model.Post
 import ba.ibu.gram.ui.components.PostTile
 import ba.ibu.gram.ui.theme.AppTheme
 import ba.ibu.gram.viewmodel.ProfileViewModel
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProfileScreen(viewModel: ProfileViewModel = viewModel(), navController: NavController? = null) {
   val profileImage = painterResource(R.drawable.profileimage);
   val followers = 420
   val following = 69
   val posts = 69
-  val bio = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
-      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in " +
-      "reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in " +
-      "culpa qui officia deserunt mollit anim id est laborum."
+  val bio =
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
+        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in " +
+        "reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in " +
+        "culpa qui officia deserunt mollit anim id est laborum."
   val postId = "1"
+
+  val postList = listOf(
+    Post(
+      "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
+      "1",
+      "Sample description",
+      420,
+      null
+    ),
+    Post(
+      "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
+      "1",
+      "Sample description",
+      420,
+      null
+    ),
+    Post(
+      "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
+      "1",
+      "Sample description",
+      420,
+      null
+    ),
+    Post(
+      "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
+      "1",
+      "Sample description",
+      420,
+      null
+    ),
+    Post(
+      "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
+      "1",
+      "Sample description",
+      420,
+      null
+    ),
+    Post(
+      "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
+      "1",
+      "Sample description",
+      420,
+      null
+    ),
+    Post(
+      "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
+      "1",
+      "Sample description",
+      420,
+      null
+    ),
+    Post(
+      "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
+      "1",
+      "Sample description",
+      420,
+      null
+    ),
+    Post(
+      "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
+      "1",
+      "Sample description",
+      420,
+      null
+    ),
+    Post(
+      "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
+      "1",
+      "Sample description",
+      420,
+      null
+    ),
+    Post(
+      "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
+      "1",
+      "Sample description",
+      420,
+      null
+    ),
+    Post(
+      "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
+      "1",
+      "Sample description",
+      420,
+      null
+    ),
+    Post(
+      "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
+      "1",
+      "Sample description",
+      420,
+      null
+    ),
+    Post(
+      "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
+      "1",
+      "Sample description",
+      420,
+      null
+    ),
+    Post(
+      "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
+      "1",
+      "Sample description",
+      420,
+      null
+    )
+
+  )
 
   Column(
     horizontalAlignment = Alignment.CenterHorizontally,
@@ -49,13 +172,23 @@ fun ProfileScreen(viewModel: ProfileViewModel = viewModel(), navController: NavC
       .fillMaxWidth()
       .padding(16.dp)
   ) {
+    FilledTonalIconButton(
+      onClick = { navController?.navigate("settings") },
+      modifier = Modifier
+        .align(Alignment.End)
+    ) {
+      Icon(
+        imageVector = Icons.Default.Settings,
+        contentDescription = null
+      )
+    }
     Image(
       painter = profileImage,
       contentDescription = null,
       modifier = Modifier
-        .clip(CircleShape)
         .size(160.dp)
         .padding(24.dp)
+        .clip(CircleShape)
     )
     Row(
       modifier = Modifier
@@ -67,7 +200,7 @@ fun ProfileScreen(viewModel: ProfileViewModel = viewModel(), navController: NavC
         style = MaterialTheme.typography.bodyLarge,
         maxLines = 3,
         overflow = TextOverflow.Ellipsis,
-        modifier = Modifier.padding(0.dp, 0.dp,0.dp, 24.dp)
+        modifier = Modifier.padding(0.dp, 0.dp, 0.dp, 24.dp)
       )
     }
     Row(
@@ -119,9 +252,16 @@ fun ProfileScreen(viewModel: ProfileViewModel = viewModel(), navController: NavC
         modifier = Modifier.weight(1f)
       )
     }
-    PostTile() {
-      navController?.navigate("post/${1}")
+    LazyVerticalGrid(
+      columns = GridCells.Fixed(3),
+      modifier = Modifier
+        .padding(0.dp, 24.dp)
+    ) {
+      items(postList.size) { i ->
+        PostTile(postList[i], Modifier.padding(2.dp))
+      }
     }
+
   }
 }
 
