@@ -6,6 +6,6 @@ import androidx.navigation.NavController
 import ba.ibu.gram.model.Post
 
 @Composable
-fun PostScreen(post: Post, navController: NavController? = null) {
+fun PostScreen(post: Post?, navController: NavController? = null) {
   Text("Post screen")
 }
