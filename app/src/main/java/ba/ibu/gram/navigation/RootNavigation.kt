@@ -10,6 +10,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.navArgument
 import ba.ibu.gram.model.Post
+import ba.ibu.gram.model.User
 import ba.ibu.gram.ui.screens.LoginScreen
 import ba.ibu.gram.ui.screens.PostScreen
 
@@ -21,7 +22,18 @@ fun RootNavigation(navController: NavHostController, loggedIn: Boolean) {
 
     navigation(route = "main", startDestination = "bottom") {
       composable("bottom") { MainNavigation() }
-      composable("post/{post}", arguments = listOf(navArgument("post") { type = NavType<Post>() } )) { PostScreen(it.post, navController) }
+      
+      composable(
+        "post/{post}",
+        arguments = listOf(navArgument("post") {
+          type = Post.navType()
+        })) { PostScreen(it.arguments?.getParcelable("post"), navController) }
+      
+      composable(
+        "user/{user}",
+        arguments = listOf(navArgument("user") {
+          type = User.navType()
+        })) { PostScreen(it.arguments?.getParcelable("user"), navController) }
     }
   }
 }

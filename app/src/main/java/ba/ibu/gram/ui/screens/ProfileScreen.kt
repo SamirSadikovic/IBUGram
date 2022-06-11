@@ -116,7 +116,7 @@ fun ProfileScreen(navController: NavController? = null) {
         modifier = Modifier.weight(1f)
       )
     }
-    PostTile {
+    PostTile() {
       navController?.navigate("post/${1}")
     }
   }
