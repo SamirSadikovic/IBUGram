@@ -21,22 +21,12 @@ fun RootNavigation(navController: NavHostController, loggedIn: Boolean) {
     navigation(route = "main", startDestination = "bottom") {
       composable("bottom") { MainNavigation(navController) }
 
-      composable(
-        "post/{postId}",
-        arguments = listOf(navArgument("postId") {
-          type = NavType.IntType
-        })
-      ) { backStackEntry ->
-        PostScreen(backStackEntry.arguments?.getInt("postId"), navController)
+      composable("post/{postId}") { backStackEntry ->
+        PostScreen(backStackEntry.arguments?.getString("postId"), navController)
       }
 
-      composable(
-        "user/{userId}",
-        arguments = listOf(navArgument("userId") {
-          type = NavType.IntType
-        })
-      ) { backStackEntry ->
-        UserScreen(backStackEntry.arguments?.getInt("userId"), navController)
+      composable("user/{userId}") { backStackEntry ->
+        UserScreen(backStackEntry.arguments?.getString("userId"), navController)
       }
     }
   }

@@ -57,7 +57,7 @@ fun FeedScreen(viewModel: FeedViewModel = viewModel(), navController: NavControl
       420,
       userPosted
     )
-  )
+  ) //grab posts from db based on all followed users
 
   LazyColumn(
     modifier = Modifier

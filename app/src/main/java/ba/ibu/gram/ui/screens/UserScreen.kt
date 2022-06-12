@@ -41,8 +41,8 @@ import coil.compose.rememberAsyncImagePainter
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun UserScreen(userId: Int?, navController: NavController? = null, viewModel: ProfileViewModel = viewModel()) {
-  val userPosted = User( //pick up user from db based on ID
+fun UserScreen(userId: String?, navController: NavController? = null, viewModel: ProfileViewModel = viewModel()) {
+  val userId = User( //pick up user from db based on ID
     1,
     "SamirS",
     "https://cdn2.iconfinder.com/data/icons/facebook-51/32/FACEBOOK_LINE-01-512.png",
@@ -62,7 +62,7 @@ fun UserScreen(userId: Int?, navController: NavController? = null, viewModel: Pr
       1,
       "Sample description",
       420,
-      userPosted
+      userId
     ),
     Post(
       1,
@@ -70,7 +70,7 @@ fun UserScreen(userId: Int?, navController: NavController? = null, viewModel: Pr
       1,
       "Sample description",
       420,
-      userPosted
+      userId
     ),
     Post(
       1,
@@ -78,7 +78,7 @@ fun UserScreen(userId: Int?, navController: NavController? = null, viewModel: Pr
       1,
       "Sample description",
       420,
-      userPosted
+      userId
     ),
     Post(
       1,
@@ -86,7 +86,7 @@ fun UserScreen(userId: Int?, navController: NavController? = null, viewModel: Pr
       1,
       "Sample description",
       420,
-      userPosted
+      userId
     ),
     Post(
       1,
@@ -94,16 +94,16 @@ fun UserScreen(userId: Int?, navController: NavController? = null, viewModel: Pr
       1,
       "Sample description",
       420,
-      userPosted
+      userId
     )
   )//pick up posts from db based on ID
 
-  val profileImage = rememberAsyncImagePainter(userPosted.photoUrl)
-  val name = userPosted.name
-  val followers = userPosted.followers
-  val following = userPosted.following
-  val posts = userPosted.postCount
-  val bio = userPosted.bio
+  val profileImage = rememberAsyncImagePainter(userId.photoUrl)
+  val name = userId.name
+  val followers = userId.followers
+  val following = userId.following
+  val posts = userId.postCount
+  val bio = userId.bio
   var isFollowed by remember { mutableStateOf(false) }
 
   Column(
@@ -242,7 +242,7 @@ fun UserScreen(userId: Int?, navController: NavController? = null, viewModel: Pr
 fun UserDefaultPreview() {
   AppTheme {
     Scaffold { _ ->
-      UserScreen(1)
+      UserScreen("zSAnROYvqlae0JC9OIGf")
     }
   }
 }
@@ -256,7 +256,7 @@ fun UserDefaultPreview() {
 fun UserDarkDefaultPreview() {
   AppTheme {
     Scaffold { _ ->
-      UserScreen(1)
+      UserScreen("zSAnROYvqlae0JC9OIGf")
     }
   }
 }
