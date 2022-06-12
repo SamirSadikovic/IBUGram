@@ -17,10 +17,7 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -35,12 +32,15 @@ import ba.ibu.gram.model.Post
 import ba.ibu.gram.model.User
 import ba.ibu.gram.ui.components.PostTile
 import ba.ibu.gram.ui.theme.AppTheme
-import ba.ibu.gram.viewmodel.ProfileViewModel
+import ba.ibu.gram.viewmodel.UserViewModel
 import coil.compose.rememberAsyncImagePainter
+import kotlinx.coroutines.launch
 
 @Composable
-fun UserScreen(userId: String?, navController: NavController? = null, viewModel: ProfileViewModel = viewModel()) {
-  val userId = User( //pick up user from db based on ID
+fun UserScreen(userId: String?, viewModel: UserViewModel = viewModel(), navController: NavController? = null) {
+  val uiState = viewModel.uiState
+
+  val user = User( //pick up user from db based on ID
     "1",
     "SamirS",
     "https://cdn2.iconfinder.com/data/icons/facebook-51/32/FACEBOOK_LINE-01-512.png",
@@ -60,7 +60,7 @@ fun UserScreen(userId: String?, navController: NavController? = null, viewModel:
       "1",
       "Sample description",
       420,
-      userId
+      user
     ),
     Post(
       "1",
@@ -68,7 +68,7 @@ fun UserScreen(userId: String?, navController: NavController? = null, viewModel:
       "1",
       "Sample description",
       420,
-      userId
+      user
     ),
     Post(
       "1",
@@ -76,7 +76,7 @@ fun UserScreen(userId: String?, navController: NavController? = null, viewModel:
       "1",
       "Sample description",
       420,
-      userId
+      user
     ),
     Post(
       "1",
@@ -84,7 +84,7 @@ fun UserScreen(userId: String?, navController: NavController? = null, viewModel:
       "1",
       "Sample description",
       420,
-      userId
+      user
     ),
     Post(
       "1",
@@ -92,17 +92,17 @@ fun UserScreen(userId: String?, navController: NavController? = null, viewModel:
       "1",
       "Sample description",
       420,
-      userId
+      user
     )
-  )//pick up posts from db based on ID
+  ) //pick up posts from db based on ID
 
-  val profileImage = rememberAsyncImagePainter(userId.photoUrl)
-  val name = userId.name
-  val followers = userId.followers
-  val following = userId.following
-  val posts = userId.postCount
-  val bio = userId.bio
-  var isFollowed by remember { mutableStateOf(false) }
+  val scope = rememberCoroutineScope()
+  val profileImage = rememberAsyncImagePainter(user.photoUrl)
+  val name = user.name
+  val followers = user.followers
+  val following = user.following
+  val posts = user.postCount
+  val bio = user.bio
 
   Column(
     horizontalAlignment = Alignment.CenterHorizontally,
@@ -142,9 +142,9 @@ fun UserScreen(userId: String?, navController: NavController? = null, viewModel:
         .fillMaxWidth()
         .padding(0.dp, 16.dp)
     ) {
-      if (isFollowed)
+      if (uiState.following)
         OutlinedButton(
-          onClick = { isFollowed = !isFollowed },
+          onClick = { scope.launch { if (userId != null) viewModel.unfollow(userId) } },
           modifier = Modifier
             .fillMaxWidth()
         ) {
@@ -156,7 +156,7 @@ fun UserScreen(userId: String?, navController: NavController? = null, viewModel:
         }
       else
         Button(
-          onClick = { isFollowed = !isFollowed },
+          onClick = { scope.launch { if (userId != null) viewModel.follow(userId) } },
           modifier = Modifier
             .fillMaxWidth()
         ) {
@@ -222,7 +222,7 @@ fun UserScreen(userId: String?, navController: NavController? = null, viewModel:
         .padding(0.dp, 24.dp)
     ) {
       items(postList.size) { i ->
-        PostTile(postList[i], Modifier.padding(2.dp)){
+        PostTile(postList[i], Modifier.padding(2.dp)) {
           navController?.navigate("post/" + postList[i].id)
         }
       }

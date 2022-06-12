@@ -27,7 +27,7 @@ fun RootNavigation(navController: NavHostController, loggedIn: Boolean) {
       }
 
       composable("user/{userId}") { backStackEntry ->
-        UserScreen(backStackEntry.arguments?.getString("userId"), navController)
+        UserScreen(backStackEntry.arguments?.getString("userId"), hiltViewModel(), navController)
       }
     }
   }
