@@ -138,7 +138,7 @@ fun FeedPostDefaultPreview() {
 }
 
 @Preview(
-  name = "SearchBar Night",
+  name = "FeedPost Night",
   showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES
 )
 @Composable
