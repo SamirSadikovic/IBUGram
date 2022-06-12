@@ -60,7 +60,7 @@ fun FeedScreen(viewModel: FeedViewModel = viewModel(), navController: NavControl
   ) {
     items(feedPosts.size) { i ->
       FeedPost(feedPosts[i], Modifier.padding(0.dp, 8.dp)){
-          navController?.navigate("user/" + feedPosts[i].user?.id)
+          navController?.navigate("user/YFZ6tdyVS5bQJ4XxRuNm7tdAu6I2")
       }
     }
   }
