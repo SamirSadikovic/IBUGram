@@ -14,6 +14,7 @@ import ba.ibu.gram.model.User
 import ba.ibu.gram.ui.screens.LoginScreen
 import ba.ibu.gram.ui.screens.PostScreen
 import ba.ibu.gram.ui.screens.SettingsScreen
+import ba.ibu.gram.ui.screens.UserScreen
 
 @Composable
 fun RootNavigation(navController: NavHostController, loggedIn: Boolean) {
@@ -33,10 +34,10 @@ fun RootNavigation(navController: NavHostController, loggedIn: Boolean) {
         })) { PostScreen(it.arguments?.getParcelable("post"), navController) }
 
       composable(
-        "user/{user}",
+        "user",
         arguments = listOf(navArgument("user") {
           type = User.navType()
-        })) { PostScreen(it.arguments?.getParcelable("user"), navController) }
+        })) { UserScreen(it.arguments?.getParcelable("user"), navController) }
     }
   }
 }

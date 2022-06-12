@@ -1,6 +1,8 @@
 package ba.ibu.gram.navigation
 
 import androidx.annotation.StringRes
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.icons.Icons
@@ -19,6 +21,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -83,9 +86,14 @@ fun MainNavigation(navController: NavController) {
   val items = listOf(Feed, Search, Chat, Profile)
 
 
-  Scaffold(bottomBar = { BottomBar(bottomNavController, items) }) { _ ->
-    NavHost(navController = bottomNavController, startDestination = "feed") {
-      items.forEach { screen -> composable(route = screen.route) { screen.content(navController) } }
+  Scaffold(bottomBar = { BottomBar(bottomNavController, items) }) { innerPadding ->
+    Box(
+      modifier = Modifier
+        .padding(innerPadding)
+    ) {
+      NavHost(navController = bottomNavController, startDestination = "feed") {
+        items.forEach { screen -> composable(route = screen.route) { screen.content(navController) } }
+      }
     }
   }
 }

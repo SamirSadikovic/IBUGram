@@ -8,8 +8,12 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class User(
-  val email: String,
-  val displayName: String
+  val name: String,
+  val photoUrl: String,
+  val bio: String,
+  val followers: Int,
+  val following: Int,
+  val postCount: Int
 ) : Parcelable {
   companion object {
     fun navType(): NavType<User> {
