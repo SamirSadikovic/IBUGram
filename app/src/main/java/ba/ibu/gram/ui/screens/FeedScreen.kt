@@ -2,19 +2,14 @@ package ba.ibu.gram.ui.screens
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.grid.GridCells.Fixed
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import ba.ibu.gram.model.Post
 import ba.ibu.gram.model.User
 import ba.ibu.gram.ui.components.FeedPost
-import ba.ibu.gram.ui.components.PostTile
 import ba.ibu.gram.viewmodel.FeedViewModel
 
 @Composable

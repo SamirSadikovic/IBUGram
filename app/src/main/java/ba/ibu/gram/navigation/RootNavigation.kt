@@ -3,11 +3,9 @@ package ba.ibu.gram.navigation
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
-import androidx.navigation.navArgument
 import ba.ibu.gram.ui.screens.LoginScreen
 import ba.ibu.gram.ui.screens.PostScreen
 import ba.ibu.gram.ui.screens.UserScreen
