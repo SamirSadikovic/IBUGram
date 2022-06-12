@@ -18,6 +18,7 @@ import ba.ibu.gram.ui.components.PostTile
 import ba.ibu.gram.viewmodel.FeedViewModel
 
 val userPosted = User(
+  1,
   "SamirS",
   "https://cdn2.iconfinder.com/data/icons/facebook-51/32/FACEBOOK_LINE-01-512.png",
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
@@ -31,6 +32,7 @@ val userPosted = User(
 
 val feedPosts = listOf(
   Post(
+    1,
     "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
     "1",
     "Sample description",
@@ -38,6 +40,7 @@ val feedPosts = listOf(
     userPosted
   ),
   Post(
+    1,
     "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
     "1",
     "Sample description",
@@ -45,6 +48,7 @@ val feedPosts = listOf(
     userPosted
   ),
   Post(
+    1,
     "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
     "1",
     "Sample description",
@@ -52,6 +56,7 @@ val feedPosts = listOf(
     userPosted
   ),
   Post(
+    1,
     "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
     "1",
     "Sample description",
@@ -59,6 +64,87 @@ val feedPosts = listOf(
     userPosted
   ),
   Post(
+    1,
+    "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
+    "1",
+    "Sample description",
+    420,
+    userPosted
+  ),
+  Post(
+    1,
+    "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
+    "1",
+    "Sample description",
+    420,
+    userPosted
+  ),
+  Post(
+    1,
+    "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
+    "1",
+    "Sample description",
+    420,
+    userPosted
+  ),
+  Post(
+    1,
+    "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
+    "1",
+    "Sample description",
+    420,
+    userPosted
+  ),
+  Post(
+    1,
+    "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
+    "1",
+    "Sample description",
+    420,
+    userPosted
+  ),
+  Post(
+    1,
+    "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
+    "1",
+    "Sample description",
+    420,
+    userPosted
+  ),
+  Post(
+    1,
+    "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
+    "1",
+    "Sample description",
+    420,
+    userPosted
+  ),
+  Post(
+    1,
+    "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
+    "1",
+    "Sample description",
+    420,
+    userPosted
+  ),
+  Post(
+    1,
+    "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
+    "1",
+    "Sample description",
+    420,
+    userPosted
+  ),
+  Post(
+    1,
+    "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
+    "1",
+    "Sample description",
+    420,
+    userPosted
+  ),
+  Post(
+    1,
     "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
     "1",
     "Sample description",
@@ -66,8 +152,6 @@ val feedPosts = listOf(
     userPosted
   )
 )
-
-
 
 @Composable
 fun FeedScreen(viewModel: FeedViewModel = viewModel(), navController: NavController? = null) {
@@ -77,8 +161,10 @@ fun FeedScreen(viewModel: FeedViewModel = viewModel(), navController: NavControl
   ) {
     items(feedPosts.size) { i ->
       FeedPost(feedPosts[i], Modifier.padding(0.dp, 8.dp)){
-        navController?.currentBackStackEntry?.savedStateHandle?.set("user", userPosted)
-        navController?.navigate("user")
+          navController?.navigate("user/" + feedPosts[i].user?.userId)
+//        navController?.currentBackStackEntry?.arguments?.putParcelable("user", feedPosts[i].user)
+//        navController?.navigate("user/{user}")
+//        navController?.navigate("user/$userPosted")
       }
     }
   }

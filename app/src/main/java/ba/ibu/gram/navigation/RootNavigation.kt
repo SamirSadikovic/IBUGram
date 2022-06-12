@@ -28,16 +28,22 @@ fun RootNavigation(navController: NavHostController, loggedIn: Boolean) {
       composable("settings") { SettingsScreen() }
 
       composable(
-        "post/{post}",
-        arguments = listOf(navArgument("post") {
-          type = Post.navType()
-        })) { PostScreen(it.arguments?.getParcelable("post"), navController) }
+        "post/{postId}",
+        arguments = listOf(navArgument("postId") {
+          type = NavType.IntType
+        })
+      ) { backStackEntry ->
+        PostScreen(backStackEntry.arguments?.getInt("postId"), navController)
+      }
 
       composable(
-        "user",
-        arguments = listOf(navArgument("user") {
-          type = User.navType()
-        })) { UserScreen(it.arguments?.getParcelable("user"), navController) }
+        "user/{userId}",
+        arguments = listOf(navArgument("userId") {
+          type = NavType.IntType
+        })
+      ) { backStackEntry ->
+        UserScreen(backStackEntry.arguments?.getInt("userId"), navController)
+      }
     }
   }
 }
