@@ -7,6 +7,7 @@ data class User(
   val bio: String,
   val followers: Int,
   val following: Int,
-  val postCount: Int
+  val postCount: Int,
+  val isFollowed: Boolean? = null
 )
 
