@@ -19,10 +19,6 @@ import androidx.compose.material3.IconToggleButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -55,16 +51,16 @@ val feedPost = Post(
   "1",
   "Sample description",
   420,
+  true,
   userPosted
 )
 
 @Composable
-fun FeedPost(post: Post, modifier: Modifier = Modifier, onClick: () -> Unit = {}) {
+fun FeedPost(post: Post, modifier: Modifier = Modifier, liked: Boolean, onNameClick: () -> Unit = {}, onReact: (liked: Boolean) -> Unit = {}) {
   val postImage = rememberAsyncImagePainter(post.photoUrl)
   val userName = post.user?.name
   val description = post.description
-  var likes = post.likes
-  var isLiked by remember { mutableStateOf(false) }
+  val likes = post.likes
 
   Column(
     horizontalAlignment = Alignment.CenterHorizontally,
@@ -87,23 +83,13 @@ fun FeedPost(post: Post, modifier: Modifier = Modifier, onClick: () -> Unit = {}
         .padding(8.dp)
     ) {
       IconToggleButton(
-        checked = isLiked,
-        onCheckedChange = {
-          isLiked = !isLiked
-          if (isLiked) {
-            if (likes != null) {
-              likes = likes!! + 1
-            }
-          } else
-            if (likes != null) {
-              likes = likes!! - 1
-            }
-        },
+        checked = liked,
+        onCheckedChange = { onReact(it) },
         modifier = Modifier
           .size(32.dp)
       ) {
         Icon(
-          imageVector = if (isLiked) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder,
+          imageVector = if (liked) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder,
           contentDescription = null,
           modifier = Modifier
             .fillMaxSize()
@@ -131,7 +117,7 @@ fun FeedPost(post: Post, modifier: Modifier = Modifier, onClick: () -> Unit = {}
           textAlign = TextAlign.Center,
           modifier = Modifier
             .padding(8.dp, 0.dp)
-            .clickable { onClick() }
+            .clickable { onNameClick() }
         )
       }
     }
@@ -155,24 +141,24 @@ fun FeedPost(post: Post, modifier: Modifier = Modifier, onClick: () -> Unit = {}
   }
 }
 
-@Preview(
-  name = "FeedPost",
-  showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_NO
-)
-@Composable
-fun FeedPostDefaultPreview() {
-  AppTheme {
-    FeedPost(feedPost)
-  }
-}
-
-@Preview(
-  name = "FeedPost Night",
-  showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES
-)
-@Composable
-fun FeedPostDarkDefaultPreview() {
-  AppTheme {
-    FeedPost(feedPost)
-  }
-}
+//@Preview(
+//  name = "FeedPost",
+//  showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_NO
+//)
+//@Composable
+//fun FeedPostDefaultPreview() {
+//  AppTheme {
+//    FeedPost(feedPost, false)
+//  }
+//}
+//
+//@Preview(
+//  name = "FeedPost Night",
+//  showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES
+//)
+//@Composable
+//fun FeedPostDarkDefaultPreview() {
+//  AppTheme {
+//    FeedPost(feedPost, false)
+//  }
+//}

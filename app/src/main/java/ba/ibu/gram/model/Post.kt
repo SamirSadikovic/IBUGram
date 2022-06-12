@@ -7,7 +7,8 @@ data class Post(
   val photoUrl: String,
   val userId: String,
   val description: String,
-  val likes: Int? = null,
+  var likes: Int? = null,
+  var liked: Boolean = false,
   val user: User? = null
 ) : BaseModel {
   override fun toFunctionBody(): HashMap<String, Any> = hashMapOf(

@@ -33,10 +33,11 @@ fun PostScreen(postId: String?, navController: NavController? = null) {
     "1",
     "Sample description",
     420,
+    false,
     user
   )
 
-  FeedPost(post, Modifier.padding(16.dp)) {
+  FeedPost(post, Modifier.padding(16.dp), post.liked) {
     navController?.navigate("user/" + post.user?.id)
   }
 }

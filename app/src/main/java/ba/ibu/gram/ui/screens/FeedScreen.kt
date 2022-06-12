@@ -7,8 +7,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import ba.ibu.gram.model.Post
-import ba.ibu.gram.model.User
 import ba.ibu.gram.ui.components.FeedPost
 import ba.ibu.gram.viewmodel.FeedViewModel
 
@@ -16,15 +14,28 @@ import ba.ibu.gram.viewmodel.FeedViewModel
 fun FeedScreen(viewModel: FeedViewModel = viewModel(), navController: NavController? = null) {
   val uiState = viewModel.uiState
 
-  uiState.feedData?.let {
+  uiState.feedData.let {
     LazyColumn(
       modifier = Modifier
         .padding(16.dp)
     ) {
       items(it.size) { i ->
-        FeedPost(it[i], Modifier.padding(0.dp, 8.dp)){
-          navController?.navigate("user/" + it[i].userId)
-        }
+        FeedPost(it[i],
+                 Modifier.padding(0.dp, 8.dp),
+                 it[i].liked,
+                 {
+                   navController?.navigate("user/" + it[i].userId)
+                 },
+                 { liked ->
+                   if (liked) {
+                     viewModel.likeFunction(it[i].id)
+                     it[i].likes = it[i].likes?.plus(1)
+                   } else {
+                     it[i].likes = it[i].likes?.minus(1)
+                     viewModel.unlikeFunction(it[i].id)
+                   }
+                 }
+        )
       }
     }
   }
