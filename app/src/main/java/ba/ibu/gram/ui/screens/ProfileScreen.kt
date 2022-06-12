@@ -125,16 +125,6 @@ fun ProfileScreen(viewModel: ProfileViewModel = viewModel(), navController: NavC
       .fillMaxWidth()
       .padding(16.dp)
   ) {
-    FilledTonalIconButton(
-      onClick = { navController?.navigate("settings") },
-      modifier = Modifier
-        .align(Alignment.End)
-    ) {
-      Icon(
-        imageVector = Icons.Default.Settings,
-        contentDescription = null
-      )
-    }
     Image(
       painter = profileImage,
       contentDescription = null,

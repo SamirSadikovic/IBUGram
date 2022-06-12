@@ -1,7 +1,6 @@
 package ba.ibu.gram.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -9,11 +8,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.navArgument
-import ba.ibu.gram.model.Post
-import ba.ibu.gram.model.User
 import ba.ibu.gram.ui.screens.LoginScreen
 import ba.ibu.gram.ui.screens.PostScreen
-import ba.ibu.gram.ui.screens.SettingsScreen
 import ba.ibu.gram.ui.screens.UserScreen
 
 @Composable
@@ -24,8 +20,6 @@ fun RootNavigation(navController: NavHostController, loggedIn: Boolean) {
 
     navigation(route = "main", startDestination = "bottom") {
       composable("bottom") { MainNavigation(navController) }
-
-      composable("settings") { SettingsScreen() }
 
       composable(
         "post/{postId}",
