@@ -15,6 +15,7 @@ import ba.ibu.gram.ui.components.feedPost
 import ba.ibu.gram.ui.theme.AppTheme
 
 val user = User(
+  1,
   "SamirS",
   "https://cdn2.iconfinder.com/data/icons/facebook-51/32/FACEBOOK_LINE-01-512.png",
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
@@ -27,6 +28,7 @@ val user = User(
 )
 
 val feedPost = Post(
+  1,
   "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
   "1",
   "Sample description",
@@ -35,12 +37,19 @@ val feedPost = Post(
 )
 
 @Composable
-fun PostScreen(post: Post?, navController: NavController? = null) {
-  if (post != null) {
-    FeedPost(post, Modifier.padding(16.dp)) {
-      navController?.currentBackStackEntry?.savedStateHandle?.set("user", post.user)
-      navController?.navigate("user")
-    }
+fun PostScreen(postId: Int?, navController: NavController? = null) {
+  val post = Post( //pick up user from db based on ID
+    1,
+    "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
+    "1",
+    "Sample description",
+    420,
+    user
+  )
+
+  FeedPost(post, Modifier.padding(16.dp)) {
+    navController?.currentBackStackEntry?.savedStateHandle?.set("user", post.user)
+    navController?.navigate("user")
   }
 }
 
@@ -51,7 +60,7 @@ fun PostScreen(post: Post?, navController: NavController? = null) {
 @Composable
 fun PostDefaultPreview() {
   AppTheme {
-    PostScreen(feedPost)
+    PostScreen(1)
   }
 }
 
@@ -62,6 +71,6 @@ fun PostDefaultPreview() {
 @Composable
 fun PostDarkDefaultPreview() {
   AppTheme {
-    PostScreen(feedPost)
+    PostScreen(1)
   }
 }

@@ -22,10 +22,12 @@ import androidx.compose.ui.unit.dp
 import ba.ibu.gram.R
 import ba.ibu.gram.model.Post
 import ba.ibu.gram.model.User
+import ba.ibu.gram.ui.screens.user
 import ba.ibu.gram.ui.theme.AppTheme
 import coil.compose.rememberAsyncImagePainter
 
 val post = Post(
+  1,
   "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
   "1",
   "Sample description",

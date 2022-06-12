@@ -8,6 +8,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class User(
+  val userId: Int,
   val name: String,
   val photoUrl: String,
   val bio: String,
@@ -23,6 +24,7 @@ data class User(
         }
 
         override fun parseValue(value: String): User {
+          println(value)
           return Gson().fromJson(value, User::class.java)
         }
 
