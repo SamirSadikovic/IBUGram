@@ -23,7 +23,7 @@ fun RootNavigation(navController: NavHostController, loggedIn: Boolean) {
       composable("createPost") { CreatePostScreen(hiltViewModel(), navController) }
 
       composable("post/{postId}") { backStackEntry ->
-        PostScreen(backStackEntry.arguments?.getString("postId"), navController)
+        PostScreen(backStackEntry.arguments?.getString("postId"), hiltViewModel(), navController)
       }
 
       composable("user/{userId}") { backStackEntry ->
