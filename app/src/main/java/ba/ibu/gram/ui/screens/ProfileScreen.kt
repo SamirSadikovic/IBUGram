@@ -260,10 +260,12 @@ fun ProfileScreen(viewModel: ProfileViewModel = viewModel(), navController: NavC
         .padding(0.dp, 24.dp)
     ) {
       items(postList.size) { i ->
-        PostTile(postList[i], Modifier.padding(2.dp))
+        PostTile(postList[i], Modifier.padding(2.dp)){
+          navController?.currentBackStackEntry?.savedStateHandle?.set("post", postList[i])
+          navController?.navigate("post")
+        }
       }
     }
-
   }
 }
 
