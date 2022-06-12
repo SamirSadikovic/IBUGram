@@ -9,7 +9,9 @@ import ba.ibu.gram.common.StringModel
 import ba.ibu.gram.common.UnitModel
 import ba.ibu.gram.functions.FollowFunction
 import ba.ibu.gram.functions.GetFeedFunction
+import ba.ibu.gram.functions.LikeFunction
 import ba.ibu.gram.functions.UnfollowFunction
+import ba.ibu.gram.functions.UnlikeFunction
 import ba.ibu.gram.model.Post
 import ba.ibu.gram.model.User
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -25,16 +27,37 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 data class FeedUiState(
-  val feedData: List<Post>? = null
+  val feedData: List<Post> = emptyList(),
+  var liked: Boolean = false
 )
 
 @HiltViewModel
-class FeedViewModel @Inject constructor(private val getFeedFunction: GetFeedFunction) : ViewModel() {
+class FeedViewModel @Inject constructor(private val getFeedFunction: GetFeedFunction, private val likeFunction: LikeFunction, private val unlikeFunction: UnlikeFunction) : ViewModel() {
   var uiState by mutableStateOf(FeedUiState())
 
   init {
     viewModelScope.launch {
-      uiState = uiState.copy(feedData = getFeedFunction.call(UnitModel()))
+      uiState = uiState.copy(feedData = getFeedFunction.call(UnitModel())?: emptyList())
+    }
+  }
+
+  fun likeFunction(postId: String){
+    viewModelScope.launch {
+      likeFunction.call(StringModel(postId))
+      val data = uiState.feedData.toMutableList()
+      val index = data.indexOfFirst { it.id == postId }
+      data[index] = data[index].copy(liked = true)
+      uiState = uiState.copy(feedData = data)
+    }
+  }
+
+  fun unlikeFunction(postId: String){
+    viewModelScope.launch {
+      unlikeFunction.call(StringModel(postId))
+      val data = uiState.feedData.toMutableList()
+      val index = data.indexOfFirst { it.id == postId }
+      data[index] = data[index].copy(liked = false)
+      uiState = uiState.copy(feedData = data)
     }
   }
 }

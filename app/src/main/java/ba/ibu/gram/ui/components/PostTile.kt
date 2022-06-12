@@ -33,6 +33,7 @@ val post = Post(
   "1",
   "Sample description",
   420,
+  false,
   userPosted
 )
 
