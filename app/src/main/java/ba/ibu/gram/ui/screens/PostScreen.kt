@@ -15,7 +15,7 @@ import ba.ibu.gram.ui.theme.AppTheme
 @Composable
 fun PostScreen(postId: String?, navController: NavController? = null) {
   val user = User(
-    1,
+    "1",
     "SamirS",
     "https://cdn2.iconfinder.com/data/icons/facebook-51/32/FACEBOOK_LINE-01-512.png",
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
@@ -28,9 +28,9 @@ fun PostScreen(postId: String?, navController: NavController? = null) {
   )
 
   val post = Post( //pick up post from db based on ID
-    1,
+    "1",
     "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
-    1,
+    "1",
     "Sample description",
     420,
     user

@@ -6,6 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
+import ba.ibu.gram.ui.screens.CreatePostScreen
 import ba.ibu.gram.ui.screens.LoginScreen
 import ba.ibu.gram.ui.screens.PostScreen
 import ba.ibu.gram.ui.screens.UserScreen
@@ -18,6 +19,8 @@ fun RootNavigation(navController: NavHostController, loggedIn: Boolean) {
 
     navigation(route = "main", startDestination = "bottom") {
       composable("bottom") { MainNavigation(navController) }
+
+      composable("createPost") { CreatePostScreen(hiltViewModel(), navController) }
 
       composable("post/{postId}") { backStackEntry ->
         PostScreen(backStackEntry.arguments?.getString("postId"), navController)

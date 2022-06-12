@@ -35,7 +35,7 @@ import coil.compose.rememberAsyncImagePainter
 @Composable
 fun ProfileScreen(viewModel: ProfileViewModel = viewModel(), navController: NavController? = null) {
   val profileUser = User(
-    1,
+    "1",
     "SamirS",
     "https://cdn2.iconfinder.com/data/icons/facebook-51/32/FACEBOOK_LINE-01-512.png",
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
@@ -55,57 +55,57 @@ fun ProfileScreen(viewModel: ProfileViewModel = viewModel(), navController: NavC
 
   val postList = listOf(
     Post(
-      1,
+      "1",
       "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
-      1,
+      "1",
       "Sample description",
       420,
       profileUser
     ),
     Post(
-      1,
+      "1",
       "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
-      1,
+      "1",
       "Sample description",
       420,
       profileUser
     ),
     Post(
-      1,
+      "1",
       "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
-      1,
+      "1",
       "Sample description",
       420,
       profileUser
     ),
     Post(
-      1,
+      "1",
       "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
-      1,
+      "1",
       "Sample description",
       420,
       profileUser
     ),
     Post(
-      1,
+      "1",
       "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
-      1,
+      "1",
       "Sample description",
       420,
       profileUser
     ),
     Post(
-      1,
+      "1",
       "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
-      1,
+      "1",
       "Sample description",
       420,
       profileUser
     ),
     Post(
-      1,
+      "1",
       "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
-      1,
+      "1",
       "Sample description",
       420,
       profileUser

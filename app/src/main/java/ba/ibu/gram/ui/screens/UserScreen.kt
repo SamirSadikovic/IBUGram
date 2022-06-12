@@ -41,7 +41,7 @@ import coil.compose.rememberAsyncImagePainter
 @Composable
 fun UserScreen(userId: String?, navController: NavController? = null, viewModel: ProfileViewModel = viewModel()) {
   val userId = User( //pick up user from db based on ID
-    1,
+    "1",
     "SamirS",
     "https://cdn2.iconfinder.com/data/icons/facebook-51/32/FACEBOOK_LINE-01-512.png",
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
@@ -55,41 +55,41 @@ fun UserScreen(userId: String?, navController: NavController? = null, viewModel:
 
   val postList = listOf(
     Post(
-      1,
+      "1",
       "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
-      1,
+      "1",
       "Sample description",
       420,
       userId
     ),
     Post(
-      1,
+      "1",
       "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
-      1,
+      "1",
       "Sample description",
       420,
       userId
     ),
     Post(
-      1,
+      "1",
       "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
-      1,
+      "1",
       "Sample description",
       420,
       userId
     ),
     Post(
-      1,
+      "1",
       "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
-      1,
+      "1",
       "Sample description",
       420,
       userId
     ),
     Post(
-      1,
+      "1",
       "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
-      1,
+      "1",
       "Sample description",
       420,
       userId
