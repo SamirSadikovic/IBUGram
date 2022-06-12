@@ -7,17 +7,13 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
-import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconToggleButton
 import androidx.compose.material3.MaterialTheme
@@ -66,7 +62,7 @@ val feedPost = Post(
 fun FeedPost(post: Post, modifier: Modifier = Modifier, onClick: () -> Unit = {}) {
   val postImage = rememberAsyncImagePainter(post.photoUrl)
   val userName = post.user?.name
-  val bio = post.user?.bio
+  val description = post.description
   var likes = post.likes
   var isLiked by remember { mutableStateOf(false) }
 
@@ -146,9 +142,9 @@ fun FeedPost(post: Post, modifier: Modifier = Modifier, onClick: () -> Unit = {}
         .fillMaxWidth()
         .padding(8.dp, 0.dp, 8.dp, 8.dp)
     ) {
-      if (bio != null) {
+      if (description != null) {
         Text(
-          bio,
+          description,
           textAlign = TextAlign.Left,
           style = MaterialTheme.typography.bodyLarge,
           maxLines = 3,

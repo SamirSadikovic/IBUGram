@@ -14,54 +14,19 @@ import ba.ibu.gram.viewmodel.FeedViewModel
 
 @Composable
 fun FeedScreen(viewModel: FeedViewModel = viewModel(), navController: NavController? = null) {
-  val userPosted = User(
-    "1",
-    "SamirS",
-    "https://cdn2.iconfinder.com/data/icons/facebook-51/32/FACEBOOK_LINE-01-512.png",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
-        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in " +
-        "reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in " +
-        "culpa qui officia deserunt mollit anim id est laborum.",
-    420,
-    69,
-    34
-  )
+  val uiState = viewModel.uiState
 
-  val feedPosts = listOf(
-    Post(
-      "1",
-      "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
-      "1",
-      "Sample description",
-      420,
-      userPosted
-    ),
-    Post(
-      "1",
-      "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
-      "1",
-      "Sample description",
-      420,
-      userPosted
-    ),
-    Post(
-      "1",
-      "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
-      "1",
-      "Sample description",
-      420,
-      userPosted
-    )
-  ) //grab posts from db based on all followed users
-
-  LazyColumn(
-    modifier = Modifier
-      .padding(16.dp)
-  ) {
-    items(feedPosts.size) { i ->
-      FeedPost(feedPosts[i], Modifier.padding(0.dp, 8.dp)){
-          navController?.navigate("user/YFZ6tdyVS5bQJ4XxRuNm7tdAu6I2")
+  uiState.feedData?.let {
+    LazyColumn(
+      modifier = Modifier
+        .padding(16.dp)
+    ) {
+      items(it.size) { i ->
+        FeedPost(it[i], Modifier.padding(0.dp, 8.dp)){
+          navController?.navigate("user/" + it[i].userId)
+        }
       }
     }
   }
+
 }
