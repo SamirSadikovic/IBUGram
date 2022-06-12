@@ -10,7 +10,7 @@ import kotlinx.android.parcel.Parcelize
 data class Post(
   val id: Int,
   val photoUrl: String,
-  val userId: String,
+  val userId: Int,
   val description: String,
   val likes: Int,
   val user: User?

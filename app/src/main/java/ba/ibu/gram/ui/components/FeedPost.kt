@@ -49,8 +49,6 @@ import ba.ibu.gram.model.Post
 import ba.ibu.gram.model.User
 import ba.ibu.gram.ui.theme.AppTheme
 import coil.compose.rememberAsyncImagePainter
-import androidx.navigation.NavController
-import com.google.gson.Gson
 
 val userPosted = User(
   1,
@@ -68,7 +66,7 @@ val userPosted = User(
 val feedPost = Post(
   1,
   "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
-  "1",
+  1,
   "Sample description",
   420,
   userPosted

@@ -1,6 +1,7 @@
 package ba.ibu.gram.ui.components
 
 import android.content.res.Configuration
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -8,24 +9,24 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldColors
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ba.ibu.gram.ui.theme.AppTheme
 
 @Composable
-fun SearchBar() {
-  var text by remember { mutableStateOf("") }
-
+fun SearchBar(text: String, onTextChange: (text: String) -> Unit = {}) {
   TextField(
-    modifier = Modifier.fillMaxWidth(),
+    modifier = Modifier
+      .fillMaxWidth(),
+    colors = TextFieldDefaults.textFieldColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
     leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
     trailingIcon = {
       if (text.isNotBlank())
@@ -33,7 +34,7 @@ fun SearchBar() {
           imageVector = Icons.Default.Close,
           contentDescription = null,
           modifier = Modifier
-            .clickable { text = "" }
+            .clickable { onTextChange("") }
             .padding(16.dp)
         )
       else
@@ -41,7 +42,7 @@ fun SearchBar() {
     },
     placeholder = { Text("Search...") },
     value = text,
-    onValueChange = { text = it }
+    onValueChange = { onTextChange(it) }
   )
 }
 
@@ -52,7 +53,7 @@ fun SearchBar() {
 @Composable
 fun SearchDefaultPreview() {
   AppTheme {
-    SearchBar()
+    SearchBar("")
   }
 }
 
@@ -63,6 +64,6 @@ fun SearchDefaultPreview() {
 @Composable
 fun SearchDarkDefaultPreview() {
   AppTheme {
-    SearchBar()
+    SearchBar("")
   }
 }

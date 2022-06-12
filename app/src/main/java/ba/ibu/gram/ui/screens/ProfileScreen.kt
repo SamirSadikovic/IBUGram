@@ -32,146 +32,92 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import ba.ibu.gram.R
 import ba.ibu.gram.model.Post
+import ba.ibu.gram.model.User
 import ba.ibu.gram.ui.components.PostTile
 import ba.ibu.gram.ui.theme.AppTheme
 import ba.ibu.gram.viewmodel.ProfileViewModel
+import coil.compose.rememberAsyncImagePainter
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProfileScreen(viewModel: ProfileViewModel = viewModel(), navController: NavController? = null) {
-  val profileImage = painterResource(R.drawable.profileimage);
-  val name = "samirS"
-  val followers = 420
-  val following = 69
-  val posts = 69
-  val bio =
+  val profileUser = User(
+    1,
+    "SamirS",
+    "https://cdn2.iconfinder.com/data/icons/facebook-51/32/FACEBOOK_LINE-01-512.png",
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
         "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in " +
         "reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in " +
-        "culpa qui officia deserunt mollit anim id est laborum."
+        "culpa qui officia deserunt mollit anim id est laborum.",
+    420,
+    69,
+    34
+  )
+  val profileImage = rememberAsyncImagePainter(profileUser.photoUrl)
+  val name = profileUser.name
+  val followers = profileUser.followers
+  val following = profileUser.following
+  val posts = profileUser.postCount
+  val bio = profileUser.bio
 
   val postList = listOf(
     Post(
       1,
       "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
-      "1",
+      1,
       "Sample description",
       420,
-      null
+      profileUser
     ),
     Post(
       1,
       "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
-      "1",
+      1,
       "Sample description",
       420,
-      null
+      profileUser
     ),
     Post(
       1,
       "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
-      "1",
+      1,
       "Sample description",
       420,
-      null
+      profileUser
     ),
     Post(
       1,
       "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
-      "1",
+      1,
       "Sample description",
       420,
-      null
+      profileUser
     ),
     Post(
       1,
       "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
-      "1",
+      1,
       "Sample description",
       420,
-      null
+      profileUser
     ),
     Post(
       1,
       "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
-      "1",
+      1,
       "Sample description",
       420,
-      null
+      profileUser
     ),
     Post(
       1,
       "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
-      "1",
-      "Sample description",
-      420,
-      null
-    ),
-    Post(
       1,
-      "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
-      "1",
       "Sample description",
       420,
-      null
-    ),
-    Post(
-      1,
-      "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
-      "1",
-      "Sample description",
-      420,
-      null
-    ),
-    Post(
-      1,
-      "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
-      "1",
-      "Sample description",
-      420,
-      null
-    ),
-    Post(
-      1,
-      "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
-      "1",
-      "Sample description",
-      420,
-      null
-    ),
-    Post(
-      1,
-      "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
-      "1",
-      "Sample description",
-      420,
-      null
-    ),
-    Post(
-      1,
-      "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
-      "1",
-      "Sample description",
-      420,
-      null
-    ),
-    Post(
-      1,
-      "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
-      "1",
-      "Sample description",
-      420,
-      null
-    ),
-    Post(
-      1,
-      "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
-      "1",
-      "Sample description",
-      420,
-      null
+      profileUser
     )
-  )
+  ) //pick up posts from db based on userID
 
   Column(
     horizontalAlignment = Alignment.CenterHorizontally,
@@ -201,8 +147,6 @@ fun ProfileScreen(viewModel: ProfileViewModel = viewModel(), navController: NavC
       textAlign = TextAlign.Center,
       fontWeight = FontWeight.Bold,
       style = MaterialTheme.typography.titleLarge,
-      maxLines = 3,
-      overflow = TextOverflow.Ellipsis,
       modifier = Modifier
         .padding(0.dp, 8.dp, 0.dp, 16.dp)
     )

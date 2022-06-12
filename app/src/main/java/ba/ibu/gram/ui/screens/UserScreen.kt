@@ -39,73 +39,10 @@ import ba.ibu.gram.ui.theme.AppTheme
 import ba.ibu.gram.viewmodel.ProfileViewModel
 import coil.compose.rememberAsyncImagePainter
 
-val userList = listOf(
-  User(
-    1,
-    "SamirS",
-    "https://cdn2.iconfinder.com/data/icons/facebook-51/32/FACEBOOK_LINE-01-512.png",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
-        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in " +
-        "reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in " +
-        "culpa qui officia deserunt mollit anim id est laborum.",
-    420,
-    69,
-    34
-  ),
-  User(
-    1,
-    "SamirS",
-    "https://cdn2.iconfinder.com/data/icons/facebook-51/32/FACEBOOK_LINE-01-512.png",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
-        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in " +
-        "reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in " +
-        "culpa qui officia deserunt mollit anim id est laborum.",
-    420,
-    69,
-    34
-  ),
-  User(
-    1,
-    "SamirS",
-    "https://cdn2.iconfinder.com/data/icons/facebook-51/32/FACEBOOK_LINE-01-512.png",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
-        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in " +
-        "reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in " +
-        "culpa qui officia deserunt mollit anim id est laborum.",
-    420,
-    69,
-    34
-  ),
-  User(
-    1,
-    "SamirS",
-    "https://cdn2.iconfinder.com/data/icons/facebook-51/32/FACEBOOK_LINE-01-512.png",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
-        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in " +
-        "reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in " +
-        "culpa qui officia deserunt mollit anim id est laborum.",
-    420,
-    69,
-    34
-  ),
-  User(
-    1,
-    "SamirS",
-    "https://cdn2.iconfinder.com/data/icons/facebook-51/32/FACEBOOK_LINE-01-512.png",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
-        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in " +
-        "reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in " +
-        "culpa qui officia deserunt mollit anim id est laborum.",
-    420,
-    69,
-    34
-  )
-)
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun UserScreen(userId: Int?, navController: NavController? = null, viewModel: ProfileViewModel = viewModel()) {
-  val user = User( //pick up user from db based on ID
+  val userPosted = User( //pick up user from db based on ID
     1,
     "SamirS",
     "https://cdn2.iconfinder.com/data/icons/facebook-51/32/FACEBOOK_LINE-01-512.png",
@@ -117,74 +54,57 @@ fun UserScreen(userId: Int?, navController: NavController? = null, viewModel: Pr
     69,
     34
   )
-
-  val profileImage = rememberAsyncImagePainter(user.photoUrl)
-  val name = "samirS"
-  val followers = user.followers
-  val following = user.following
-  val posts = user.postCount
-  val bio = user.bio
-
-  var isFollowed by remember { mutableStateOf(false) }
 
   val postList = listOf(
     Post(
       1,
       "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
-      "1",
+      1,
       "Sample description",
       420,
-      null
+      userPosted
     ),
     Post(
       1,
       "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
-      "1",
+      1,
       "Sample description",
       420,
-      null
+      userPosted
     ),
     Post(
       1,
       "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
-      "1",
+      1,
       "Sample description",
       420,
-      null
+      userPosted
     ),
     Post(
       1,
       "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
-      "1",
+      1,
       "Sample description",
       420,
-      null
+      userPosted
     ),
     Post(
       1,
       "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
-      "1",
-      "Sample description",
-      420,
-      null
-    ),
-    Post(
       1,
-      "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
-      "1",
       "Sample description",
       420,
-      null
-    ),
-    Post(
-      1,
-      "https://preview.redd.it/o44hchf54ix01.jpg?auto=webp&s=f15413e4eecdd3574c92b58633bd6b62b232c7f1",
-      "1",
-      "Sample description",
-      420,
-      null
+      userPosted
     )
-  )
+  )//pick up posts from db based on ID
+
+  val profileImage = rememberAsyncImagePainter(userPosted.photoUrl)
+  val name = userPosted.name
+  val followers = userPosted.followers
+  val following = userPosted.following
+  val posts = userPosted.postCount
+  val bio = userPosted.bio
+  var isFollowed by remember { mutableStateOf(false) }
 
   Column(
     horizontalAlignment = Alignment.CenterHorizontally,
@@ -204,8 +124,6 @@ fun UserScreen(userId: Int?, navController: NavController? = null, viewModel: Pr
       textAlign = TextAlign.Center,
       fontWeight = FontWeight.Bold,
       style = MaterialTheme.typography.titleLarge,
-      maxLines = 3,
-      overflow = TextOverflow.Ellipsis,
       modifier = Modifier
         .padding(0.dp, 8.dp, 0.dp, 16.dp)
     )
