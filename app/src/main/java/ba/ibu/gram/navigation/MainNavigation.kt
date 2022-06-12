@@ -3,27 +3,35 @@ package ba.ibu.gram.navigation
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
+import androidx.compose.material.IconButton
+import androidx.compose.material3.MediumTopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Chat
 import androidx.compose.material.icons.filled.Feed
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.outlined.AccountCircle
 import androidx.compose.material.icons.outlined.Chat
 import androidx.compose.material.icons.outlined.Feed
+import androidx.compose.material.icons.outlined.PostAdd
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SmallTopAppBar
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination.Companion.hierarchy
@@ -82,10 +90,20 @@ enum class BottomScreen(
 @Composable
 fun MainNavigation(navController: NavController) {
   val bottomNavController = rememberNavController()
-  val items = listOf(Feed, Search, Chat, Profile)
+  val items = listOf(Feed, Search, Profile)
 
-
-  Scaffold(bottomBar = { BottomBar(bottomNavController, items) }) { innerPadding ->
+  Scaffold(
+    bottomBar = { BottomBar(bottomNavController, items) },
+    floatingActionButton = {
+      FloatingActionButton(
+        onClick = { navController.navigate("createPost") },
+        modifier = Modifier.padding(8.dp),
+        shape = RoundedCornerShape(16.dp)
+      ) {
+        Icon(imageVector = Icons.Outlined.PostAdd, contentDescription = null)
+      }
+    },
+  ) { innerPadding ->
     Box(
       modifier = Modifier
         .padding(innerPadding)

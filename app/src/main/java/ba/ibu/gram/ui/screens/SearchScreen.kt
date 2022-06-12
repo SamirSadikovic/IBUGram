@@ -39,7 +39,7 @@ import coil.compose.rememberAsyncImagePainter
 fun SearchScreen(viewModel: SearchViewModel = viewModel(), navController: NavController? = null) {
   val results = listOf(
     User(
-      1,
+      "1",
       "SamirS",
       "https://cdn2.iconfinder.com/data/icons/facebook-51/32/FACEBOOK_LINE-01-512.png",
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
@@ -51,7 +51,7 @@ fun SearchScreen(viewModel: SearchViewModel = viewModel(), navController: NavCon
       34
     ),
     User(
-      1,
+      "1",
       "SamirS",
       "https://cdn2.iconfinder.com/data/icons/facebook-51/32/FACEBOOK_LINE-01-512.png",
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
@@ -63,7 +63,7 @@ fun SearchScreen(viewModel: SearchViewModel = viewModel(), navController: NavCon
       34
     ),
     User(
-      1,
+      "1",
       "SamirS",
       "https://cdn2.iconfinder.com/data/icons/facebook-51/32/FACEBOOK_LINE-01-512.png",
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
@@ -75,7 +75,7 @@ fun SearchScreen(viewModel: SearchViewModel = viewModel(), navController: NavCon
       34
     ),
     User(
-      1,
+      "1",
       "SamirS",
       "https://cdn2.iconfinder.com/data/icons/facebook-51/32/FACEBOOK_LINE-01-512.png",
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
@@ -87,7 +87,7 @@ fun SearchScreen(viewModel: SearchViewModel = viewModel(), navController: NavCon
       34
     ),
     User(
-      1,
+      "1",
       "SamirS",
       "https://cdn2.iconfinder.com/data/icons/facebook-51/32/FACEBOOK_LINE-01-512.png",
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
