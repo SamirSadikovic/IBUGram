@@ -15,7 +15,7 @@ import ba.ibu.gram.ui.components.feedPost
 import ba.ibu.gram.ui.theme.AppTheme
 
 @Composable
-fun PostScreen(postId: Int?, navController: NavController? = null) {
+fun PostScreen(postId: String?, navController: NavController? = null) {
   val user = User(
     1,
     "SamirS",
@@ -50,7 +50,7 @@ fun PostScreen(postId: Int?, navController: NavController? = null) {
 @Composable
 fun PostDefaultPreview() {
   AppTheme {
-    PostScreen(1)
+    PostScreen("btS6BIN7y8BSNUn6Y44o")
   }
 }
 
@@ -61,6 +61,6 @@ fun PostDefaultPreview() {
 @Composable
 fun PostDarkDefaultPreview() {
   AppTheme {
-    PostScreen(1)
+    PostScreen("btS6BIN7y8BSNUn6Y44o")
   }
 }

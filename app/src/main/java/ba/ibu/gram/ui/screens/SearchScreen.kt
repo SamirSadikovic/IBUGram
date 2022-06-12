@@ -2,6 +2,7 @@ package ba.ibu.gram.ui.screens
 
 import android.content.res.Configuration
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -119,8 +120,11 @@ fun SearchScreen(viewModel: SearchViewModel = viewModel(), navController: NavCon
         val user = results[i]
         val profileImage = rememberAsyncImagePainter(user.photoUrl)
         val name = user.name
+        val id = user.id
+
         if (i <= results.lastIndex && i != 0)
           Divider(color = MaterialTheme.colorScheme.primary, thickness = 1.dp)
+
         Row(
           horizontalArrangement = Arrangement.Start,
           verticalAlignment = Alignment.CenterVertically,
@@ -128,6 +132,7 @@ fun SearchScreen(viewModel: SearchViewModel = viewModel(), navController: NavCon
             .fillMaxWidth()
             .height(96.dp)
             .padding(8.dp, 8.dp)
+            .clickable { navController?.navigate("user/$id") }
         ){
           Image(
             painter = profileImage,
