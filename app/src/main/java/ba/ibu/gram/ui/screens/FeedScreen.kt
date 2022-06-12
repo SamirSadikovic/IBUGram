@@ -161,10 +161,7 @@ fun FeedScreen(viewModel: FeedViewModel = viewModel(), navController: NavControl
   ) {
     items(feedPosts.size) { i ->
       FeedPost(feedPosts[i], Modifier.padding(0.dp, 8.dp)){
-          navController?.navigate("user/" + feedPosts[i].user?.userId)
-//        navController?.currentBackStackEntry?.arguments?.putParcelable("user", feedPosts[i].user)
-//        navController?.navigate("user/{user}")
-//        navController?.navigate("user/$userPosted")
+          navController?.navigate("user/" + feedPosts[i].user?.id)
       }
     }
   }
