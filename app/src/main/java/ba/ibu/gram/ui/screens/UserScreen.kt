@@ -31,7 +31,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import ba.ibu.gram.R
 import ba.ibu.gram.model.Post
 import ba.ibu.gram.model.User
 import ba.ibu.gram.ui.components.PostTile
@@ -39,7 +38,6 @@ import ba.ibu.gram.ui.theme.AppTheme
 import ba.ibu.gram.viewmodel.ProfileViewModel
 import coil.compose.rememberAsyncImagePainter
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun UserScreen(userId: String?, navController: NavController? = null, viewModel: ProfileViewModel = viewModel()) {
   val userId = User( //pick up user from db based on ID

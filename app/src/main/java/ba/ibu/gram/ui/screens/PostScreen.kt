@@ -2,7 +2,6 @@ package ba.ibu.gram.ui.screens
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -11,7 +10,6 @@ import androidx.navigation.NavController
 import ba.ibu.gram.model.Post
 import ba.ibu.gram.model.User
 import ba.ibu.gram.ui.components.FeedPost
-import ba.ibu.gram.ui.components.feedPost
 import ba.ibu.gram.ui.theme.AppTheme
 
 @Composable
