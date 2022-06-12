@@ -48,8 +48,7 @@ fun PostScreen(postId: Int?, navController: NavController? = null) {
   )
 
   FeedPost(post, Modifier.padding(16.dp)) {
-    navController?.currentBackStackEntry?.savedStateHandle?.set("user", post.user)
-    navController?.navigate("user")
+    navController?.navigate("user/" + post.userId)
   }
 }
 
