@@ -4,31 +4,64 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelStoreOwner
+import androidx.lifecycle.viewModelScope
 import ba.ibu.gram.common.StringModel
 import ba.ibu.gram.common.UnitModel
 import ba.ibu.gram.functions.FollowFunction
 import ba.ibu.gram.functions.GetFeedFunction
+import ba.ibu.gram.functions.GetUserFunction
+import ba.ibu.gram.functions.GetUserPostsFunction
 import ba.ibu.gram.functions.UnfollowFunction
 import ba.ibu.gram.model.Post
+import ba.ibu.gram.model.User
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 data class UserUiState(
-  val following: Boolean = false
+  val following: Boolean = false,
+  val userLoading: Boolean = false,
+  val postsLoading: Boolean = false,
+  val user: User? = null,
+  val posts: List<Post> = emptyList()
 )
 
 @HiltViewModel
-class UserViewModel @Inject constructor(private val followFunction: FollowFunction, private val unfollowFunction: UnfollowFunction) : ViewModel() {
+class UserViewModel @Inject constructor(
+  private val followFunction: FollowFunction,
+  private val unfollowFunction: UnfollowFunction,
+  private val getUserFunction: GetUserFunction,
+  private val getUserPostsFunction: GetUserPostsFunction,
+) : ViewModel() {
   var uiState by mutableStateOf(UserUiState())
     private set
 
-  suspend fun follow(userId: String) {
-    followFunction.call(StringModel(userId))
-    uiState = uiState.copy(following = true)
+  fun getUserData(userId: String) {
+    viewModelScope.launch {
+      uiState = uiState.copy(userLoading = true)
+      val user = getUserFunction.call(StringModel(userId))
+      uiState = uiState.copy(userLoading = false, user = user, following = if (user?.isFollowed != null) user.isFollowed else false)
+    }
+
+    viewModelScope.launch {
+      uiState = uiState.copy(postsLoading = true)
+      val posts = getUserPostsFunction.call(StringModel(userId))
+      uiState = uiState.copy(posts = posts ?: emptyList(), postsLoading = false)
+    }
   }
 
-  suspend fun unfollow(userId: String) {
-    unfollowFunction.call(StringModel(userId))
-    uiState = uiState.copy(following = false)
+  fun follow(userId: String) {
+    viewModelScope.launch {
+      followFunction.call(StringModel(userId))
+      uiState = uiState.copy(following = true)
+    }
+  }
+
+  fun unfollow(userId: String) {
+    viewModelScope.launch {
+      unfollowFunction.call(StringModel(userId))
+      uiState = uiState.copy(following = false)
+    }
   }
 }
