@@ -7,13 +7,17 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconToggleButton
 import androidx.compose.material3.MaterialTheme
@@ -28,6 +32,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ba.ibu.gram.model.Post
@@ -61,6 +66,8 @@ val feedPost = Post(
 fun FeedPost(post: Post, modifier: Modifier = Modifier, onClick: () -> Unit = {}) {
   val postImage = rememberAsyncImagePainter(post.photoUrl)
   val userName = post.user?.name
+  val bio = post.user?.bio
+  var likes = post.likes
   var isLiked by remember { mutableStateOf(false) }
 
   Column(
@@ -85,7 +92,17 @@ fun FeedPost(post: Post, modifier: Modifier = Modifier, onClick: () -> Unit = {}
     ) {
       IconToggleButton(
         checked = isLiked,
-        onCheckedChange = { isLiked = !isLiked },
+        onCheckedChange = {
+          isLiked = !isLiked
+          if (isLiked) {
+            if (likes != null) {
+              likes = likes!! + 1
+            }
+          } else
+            if (likes != null) {
+              likes = likes!! - 1
+            }
+        },
         modifier = Modifier
           .size(32.dp)
       ) {
@@ -96,15 +113,46 @@ fun FeedPost(post: Post, modifier: Modifier = Modifier, onClick: () -> Unit = {}
             .fillMaxSize()
         )
       }
+      Text(
+        likes.toString(),
+        style = MaterialTheme.typography.bodyLarge,
+        fontWeight = FontWeight.Bold,
+        textAlign = TextAlign.Center,
+        modifier = Modifier
+          .padding(8.dp, 0.dp)
+      )
+      Text(
+        "-",
+        style = MaterialTheme.typography.bodyLarge,
+        fontWeight = FontWeight.Bold,
+        textAlign = TextAlign.Center
+      )
       if (userName != null) {
         Text(
-          userName,
+          "userName",
           style = MaterialTheme.typography.bodyLarge,
           fontWeight = FontWeight.Bold,
           textAlign = TextAlign.Center,
           modifier = Modifier
             .padding(8.dp, 0.dp)
             .clickable { onClick() }
+        )
+      }
+    }
+    Row(
+      horizontalArrangement = Arrangement.Start,
+      verticalAlignment = Alignment.Top,
+      modifier = Modifier
+        .fillMaxWidth()
+        .padding(8.dp, 0.dp, 8.dp, 8.dp)
+    ) {
+      if (bio != null) {
+        Text(
+          bio,
+          textAlign = TextAlign.Left,
+          style = MaterialTheme.typography.bodyLarge,
+          maxLines = 3,
+          overflow = TextOverflow.Ellipsis
         )
       }
     }
