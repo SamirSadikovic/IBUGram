@@ -34,7 +34,7 @@ class SearchViewModel @Inject constructor(private val searchUsersFunction: Searc
   var uiState by mutableStateOf(SearchUiState())
   private val textSearch: StateFlow<String> = uiState.textSearch
 
-  init {
+  fun search() {
     viewModelScope.launch {
       uiState = uiState.copy(searchLoading = true)
       textSearch.debounce(1000).collect { query ->

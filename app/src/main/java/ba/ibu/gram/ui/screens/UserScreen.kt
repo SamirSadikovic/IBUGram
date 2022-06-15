@@ -29,6 +29,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -68,6 +69,7 @@ fun UserScreen(userId: String?, viewModel: UserViewModel = viewModel(), navContr
         Image(
           painter = profileImage,
           contentDescription = null,
+          contentScale = ContentScale.Crop,
           modifier = Modifier
             .size(160.dp)
             .clip(CircleShape)
@@ -110,6 +112,7 @@ fun UserScreen(userId: String?, viewModel: UserViewModel = viewModel(), navContr
         if (uiState.following)
           OutlinedButton(
             onClick = { if (userId != null) viewModel.unfollow(userId) },
+            enabled = !uiState.followLoading,
             modifier = Modifier
               .fillMaxWidth()
           ) {
@@ -122,6 +125,7 @@ fun UserScreen(userId: String?, viewModel: UserViewModel = viewModel(), navContr
         else
           Button(
             onClick = { if (userId != null) viewModel.follow(userId) },
+            enabled = !uiState.followLoading,
             modifier = Modifier
               .fillMaxWidth()
           ) {

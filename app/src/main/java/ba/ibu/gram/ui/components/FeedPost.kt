@@ -88,7 +88,7 @@ fun FeedPost(post: Post, modifier: Modifier = Modifier, liked: Boolean, onNameCl
       )
       if (userName != null) {
         Text(
-          "userName",
+          userName,
           style = MaterialTheme.typography.bodyLarge,
           fontWeight = FontWeight.Bold,
           textAlign = TextAlign.Center,

@@ -36,7 +36,7 @@ data class FeedUiState(
 class FeedViewModel @Inject constructor(private val getFeedFunction: GetFeedFunction, private val likeFunction: LikeFunction, private val unlikeFunction: UnlikeFunction) : ViewModel() {
   var uiState by mutableStateOf(FeedUiState())
 
-  init {
+  fun getFeedData() {
     viewModelScope.launch {
       uiState = uiState.copy(feedLoading = true)
       uiState = uiState.copy(feedData = getFeedFunction.call(UnitModel())?: emptyList(), feedLoading = false)
