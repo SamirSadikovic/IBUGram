@@ -16,12 +16,21 @@ import javax.inject.Inject
 
 data class PostUiState(
   val post: Post? = null,
-  val liked: Boolean = false
+  val liked: Boolean = false,
+  val postLoading: Boolean = false
 )
 
 @HiltViewModel
 class PostViewModel @Inject constructor(private val getPostFunction: GetPostFunction, private val likeFunction: LikeFunction, private val unlikeFunction: UnlikeFunction) : ViewModel() {
   var uiState by mutableStateOf(PostUiState())
+
+  fun getPostData(postId: String) {
+    viewModelScope.launch {
+      uiState = uiState.copy(postLoading = true)
+      val post = getPostFunction.call(StringModel(postId))
+      uiState = uiState.copy(post = post, liked = if (post?.liked != null) post.liked!! else false, postLoading = false)
+    }
+  }
 
   fun likeFunction(postId: String){
     viewModelScope.launch {
@@ -34,13 +43,6 @@ class PostViewModel @Inject constructor(private val getPostFunction: GetPostFunc
     viewModelScope.launch {
       unlikeFunction.call(StringModel(postId))
       uiState = uiState.copy(liked = false)
-    }
-  }
-
-  fun getPostData(postId: String) {
-    viewModelScope.launch {
-      val post = getPostFunction.call(StringModel(postId))
-      uiState = uiState.copy(post = post, liked = if (post?.liked != null) post.liked!! else false)
     }
   }
 }

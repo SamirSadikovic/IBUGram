@@ -4,11 +4,14 @@ import android.content.res.Configuration
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -20,10 +23,10 @@ import ba.ibu.gram.ui.theme.AppTheme
 
 @Composable
 fun SearchBar(text: String, onTextChange: (text: String) -> Unit = {}) {
-  TextField(
+  OutlinedTextField(
     modifier = Modifier
       .fillMaxWidth(),
-    colors = TextFieldDefaults.textFieldColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
+    colors = TextFieldDefaults.textFieldColors(focusedLabelColor = MaterialTheme.colorScheme.primaryContainer),
     leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
     trailingIcon = {
       if (text.isNotBlank())
@@ -39,7 +42,8 @@ fun SearchBar(text: String, onTextChange: (text: String) -> Unit = {}) {
     },
     placeholder = { Text("Search...") },
     value = text,
-    onValueChange = { onTextChange(it) }
+    onValueChange = { onTextChange(it) },
+    shape = CircleShape
   )
 }
 

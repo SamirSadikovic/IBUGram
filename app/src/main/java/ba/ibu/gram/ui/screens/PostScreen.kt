@@ -1,9 +1,13 @@
 package ba.ibu.gram.ui.screens
 
 import android.content.res.Configuration
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -16,33 +20,40 @@ import ba.ibu.gram.viewmodel.PostViewModel
 @Composable
 fun PostScreen(postId: String?, viewModel: PostViewModel = viewModel(), navController: NavController? = null) {
   val uiState = viewModel.uiState
+
   LaunchedEffect(key1 = "start") {
     if (postId != null) viewModel.getPostData(postId)
   }
   val post = uiState.post
 
-  if (post != null) {
-    FeedPost(
-      post,
-      Modifier.padding(16.dp),
-      uiState.liked,
-      {
-        navController?.navigate("user/" + post.userId)
-      },
-      { liked ->
-        if (liked) {
-          if (postId != null) {
-            viewModel.likeFunction(postId)
-          }
-          post.likes = post.likes?.plus(1)
-        } else {
-          post.likes = post.likes?.minus(1)
-          if (postId != null) {
-            viewModel.unlikeFunction(postId)
+  if (uiState.postLoading) {
+    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+      CircularProgressIndicator()
+    }
+  } else {
+    if (post != null) {
+      FeedPost(
+        post,
+        Modifier.padding(16.dp),
+        uiState.liked,
+        {
+          navController?.navigate("user/" + post.userId)
+        },
+        { liked ->
+          if (liked) {
+            if (postId != null) {
+              viewModel.likeFunction(postId)
+            }
+            post.likes = post.likes?.plus(1)
+          } else {
+            post.likes = post.likes?.minus(1)
+            if (postId != null) {
+              viewModel.unlikeFunction(postId)
+            }
           }
         }
-      }
-    )
+      )
+    }
   }
 }
 

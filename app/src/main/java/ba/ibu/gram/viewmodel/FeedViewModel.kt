@@ -28,7 +28,8 @@ import javax.inject.Inject
 
 data class FeedUiState(
   val feedData: List<Post> = emptyList(),
-  var liked: Boolean = false
+  var liked: Boolean = false,
+  val feedLoading: Boolean = false
 )
 
 @HiltViewModel
@@ -37,7 +38,8 @@ class FeedViewModel @Inject constructor(private val getFeedFunction: GetFeedFunc
 
   init {
     viewModelScope.launch {
-      uiState = uiState.copy(feedData = getFeedFunction.call(UnitModel())?: emptyList())
+      uiState = uiState.copy(feedLoading = true)
+      uiState = uiState.copy(feedData = getFeedFunction.call(UnitModel())?: emptyList(), feedLoading = false)
     }
   }
 
