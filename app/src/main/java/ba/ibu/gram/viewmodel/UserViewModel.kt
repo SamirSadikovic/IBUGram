@@ -23,6 +23,7 @@ data class UserUiState(
   val following: Boolean = false,
   val userLoading: Boolean = false,
   val postsLoading: Boolean = false,
+  val followLoading: Boolean = false,
   val user: User? = null,
   val posts: List<Post> = emptyList()
 )
@@ -53,15 +54,17 @@ class UserViewModel @Inject constructor(
 
   fun follow(userId: String) {
     viewModelScope.launch {
+      uiState = uiState.copy(followLoading = true)
       followFunction.call(StringModel(userId))
-      uiState = uiState.copy(following = true)
+      uiState = uiState.copy(following = true, followLoading = false)
     }
   }
 
   fun unfollow(userId: String) {
     viewModelScope.launch {
+      uiState = uiState.copy(followLoading = true)
       unfollowFunction.call(StringModel(userId))
-      uiState = uiState.copy(following = false)
+      uiState = uiState.copy(following = false, followLoading = false)
     }
   }
 }

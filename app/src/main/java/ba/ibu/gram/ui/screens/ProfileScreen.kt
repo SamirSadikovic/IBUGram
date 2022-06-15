@@ -27,6 +27,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -65,6 +66,7 @@ fun ProfileScreen(viewModel: ProfileViewModel = viewModel(), navController: NavC
         Image(
           painter = profileImage,
           contentDescription = null,
+          contentScale = ContentScale.Crop,
           modifier = Modifier
             .size(160.dp)
             .clip(CircleShape)
